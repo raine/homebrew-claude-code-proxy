@@ -1,26 +1,26 @@
 class ClaudeCodeProxy < Formula
   desc "Local proxy: Claude Code to ChatGPT subscription via Codex Responses API"
   homepage "https://github.com/raine/claude-code-proxy"
-  version "0.0.9"
+  version "0.0.10"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/raine/claude-code-proxy/releases/download/v0.0.9/claude-code-proxy-darwin-arm64.tar.gz"
-      sha256 "792449ca703fa27456bbc64c2a1f8b06be69f0a726caffec3ced9f9d26becd9d"
+      url "https://github.com/raine/claude-code-proxy/releases/download/v0.0.10/claude-code-proxy-darwin-arm64.tar.gz"
+      sha256 "f20625900220b50be559fd3d39083f1c249d541ff64aeb8d0b41b3091ac5cf53"
     else
-      url "https://github.com/raine/claude-code-proxy/releases/download/v0.0.9/claude-code-proxy-darwin-amd64.tar.gz"
-      sha256 "910bf7bdc570d022c2af5f3c48131864902b8e6ed0b45073844602e6578eb0d2"
+      url "https://github.com/raine/claude-code-proxy/releases/download/v0.0.10/claude-code-proxy-darwin-amd64.tar.gz"
+      sha256 "5e548814a3682f3396fe47e610eb89a9744a4d1dc54b8494fbb8bf388e25ea7e"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/raine/claude-code-proxy/releases/download/v0.0.9/claude-code-proxy-linux-arm64.tar.gz"
-      sha256 "56a4df4ede7a4978a3aa3cf058c9df582fde33eba50c47d30ba00220c6ad8901"
+      url "https://github.com/raine/claude-code-proxy/releases/download/v0.0.10/claude-code-proxy-linux-arm64.tar.gz"
+      sha256 "5095f582fc919e6131869717aea370c7e8e453b01f36ea71a3f95cdae07b451a"
     else
-      url "https://github.com/raine/claude-code-proxy/releases/download/v0.0.9/claude-code-proxy-linux-amd64.tar.gz"
-      sha256 "0805722bb70f1c2306db747787e1b71c795d902c0a26efddefba1a0638dd6c46"
+      url "https://github.com/raine/claude-code-proxy/releases/download/v0.0.10/claude-code-proxy-linux-amd64.tar.gz"
+      sha256 "37240054f1a6fc7573c5af293868edb47cadad6f9ebd28ff5fd6d399b611a8f2"
     end
   end
 
