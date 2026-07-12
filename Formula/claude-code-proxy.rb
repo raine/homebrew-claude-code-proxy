@@ -29,10 +29,13 @@ class ClaudeCodeProxy < Formula
   end
 
   service do
+    state_home = ENV.fetch("XDG_STATE_HOME", "#{Dir.home}/.local/state")
+
     run [opt_bin/"claude-code-proxy", "serve", "--no-monitor"]
     keep_alive true
-    log_path "#{Dir.home}/.local/state/claude-code-proxy/service.log"
-    error_log_path "#{Dir.home}/.local/state/claude-code-proxy/service.log"
+    environment_variables XDG_STATE_HOME: state_home
+    log_path "#{state_home}/claude-code-proxy/service.log"
+    error_log_path "#{state_home}/claude-code-proxy/service.log"
   end
 
   test do
