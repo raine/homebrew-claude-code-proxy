@@ -28,6 +28,13 @@ class ClaudeCodeProxy < Formula
     bin.install "claude-code-proxy"
   end
 
+  service do
+    run [opt_bin/"claude-code-proxy", "serve", "--no-monitor"]
+    keep_alive true
+    log_path "#{Dir.home}/.local/state/claude-code-proxy/service.log"
+    error_log_path "#{Dir.home}/.local/state/claude-code-proxy/service.log"
+  end
+
   test do
     assert_match version.to_s, shell_output("\#{bin}/claude-code-proxy --version")
   end
