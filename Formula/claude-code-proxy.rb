@@ -1,31 +1,41 @@
 class ClaudeCodeProxy < Formula
   desc "Local proxy: Claude Code to ChatGPT subscription via Codex Responses API"
   homepage "https://github.com/raine/claude-code-proxy"
-  version "0.1.16"
+  version "0.1.17"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/raine/claude-code-proxy/releases/download/v0.1.16/claude-code-proxy-darwin-arm64.tar.gz"
-      sha256 "ea167f4a613cc407849a3cae675948eef305c757fc45ee18df4d4a31eb0d4b82"
+      url "https://github.com/raine/claude-code-proxy/releases/download/v0.1.17/claude-code-proxy-darwin-arm64.tar.gz"
+      sha256 "547ca330f3ee553ab697d695fb7117a12ab1b63ae629287c30b8c7cd4baca329"
     else
-      url "https://github.com/raine/claude-code-proxy/releases/download/v0.1.16/claude-code-proxy-darwin-amd64.tar.gz"
-      sha256 "90b48989d25407aa0394ed527d00bbb13460e9e7dc188f9a6a6d43a7a7a1f973"
+      url "https://github.com/raine/claude-code-proxy/releases/download/v0.1.17/claude-code-proxy-darwin-amd64.tar.gz"
+      sha256 "070149ecffedd0e5efeba4a7aa2b7a60fd0b0bf479484990647b0f172a86f7d1"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/raine/claude-code-proxy/releases/download/v0.1.16/claude-code-proxy-linux-arm64.tar.gz"
-      sha256 "4e0dd880d22f806f9d17face6cca910551be552e3961db8a13fc3cd18c7105b7"
+      url "https://github.com/raine/claude-code-proxy/releases/download/v0.1.17/claude-code-proxy-linux-arm64.tar.gz"
+      sha256 "76c3c28e044fd779655f57be1048924330492fb5eb65cdabaa21d3fa8543d139"
     else
-      url "https://github.com/raine/claude-code-proxy/releases/download/v0.1.16/claude-code-proxy-linux-amd64.tar.gz"
-      sha256 "60440bfe230413bb3fcfbd9fc80f772d325fa9479311e00f1b20e29b4163707e"
+      url "https://github.com/raine/claude-code-proxy/releases/download/v0.1.17/claude-code-proxy-linux-amd64.tar.gz"
+      sha256 "24057ea37c4ad386f0a0e3d257dc9b734d220f717fbd57114dc003a61e4a79be"
     end
   end
 
   def install
     bin.install "claude-code-proxy"
+  end
+
+  service do
+    state_home = ENV.fetch("XDG_STATE_HOME", "#{Dir.home}/.local/state")
+
+    run [opt_bin/"claude-code-proxy", "serve", "--no-monitor"]
+    keep_alive true
+    environment_variables XDG_STATE_HOME: state_home
+    log_path "#{state_home}/claude-code-proxy/service.log"
+    error_log_path "#{state_home}/claude-code-proxy/service.log"
   end
 
   test do
